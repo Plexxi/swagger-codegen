@@ -16,15 +16,13 @@ namespace IO.Swagger.Model
     /// </summary>
     [DataContract]
     public partial class Name :  IEquatable<Name>
-    { 
-    
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
-        /// Initializes a new instance of the <see cref="Name" />class.
         /// </summary>
         /// <param name="_Name">_Name (required).</param>
-
-        public Name(int? _Name = null)
+        /// <param name="Property">Property.</param>
+        public Name(int? _Name = null, string Property = null)
         {
             // to ensure "_Name" is required (not null)
             if (_Name == null)
@@ -36,21 +34,26 @@ namespace IO.Swagger.Model
                 this._Name = _Name;
             }
             
+            
+                        this.Property = Property;
+            
         }
-
-    
+        
         /// <summary>
         /// Gets or Sets _Name
         /// </summary>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public int? _Name { get; set; }
-    
         /// <summary>
         /// Gets or Sets SnakeCase
         /// </summary>
         [DataMember(Name="snake_case", EmitDefaultValue=false)]
         public int? SnakeCase { get; private set; }
-    
+        /// <summary>
+        /// Gets or Sets Property
+        /// </summary>
+        [DataMember(Name="property", EmitDefaultValue=false)]
+        public string Property { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -60,11 +63,12 @@ namespace IO.Swagger.Model
             var sb = new StringBuilder();
             sb.Append("class Name {\n");
             sb.Append("  _Name: ").Append(_Name).Append("\n");
-            sb.Append("  SnakeCase: ").Append(SnakeCase).Append("\n");
+sb.Append("  SnakeCase: ").Append(SnakeCase).Append("\n");
+sb.Append("  Property: ").Append(Property).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -106,6 +110,11 @@ namespace IO.Swagger.Model
                     this.SnakeCase == other.SnakeCase ||
                     this.SnakeCase != null &&
                     this.SnakeCase.Equals(other.SnakeCase)
+                ) && 
+                (
+                    this.Property == other.Property ||
+                    this.Property != null &&
+                    this.Property.Equals(other.Property)
                 );
         }
 
@@ -124,9 +133,11 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this._Name.GetHashCode();
                 if (this.SnakeCase != null)
                     hash = hash * 59 + this.SnakeCase.GetHashCode();
+                if (this.Property != null)
+                    hash = hash * 59 + this.Property.GetHashCode();
                 return hash;
             }
         }
-
     }
+
 }
